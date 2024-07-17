@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.RoleBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.RoleBean">
+    <!--@mbg.generated-->
+    <!--@Table t_sys_role-->
+    <id column="roleId" jdbcType="INTEGER" property="roleId" />
+    <result column="roleEname" jdbcType="VARCHAR" property="roleEname" />
+    <result column="roleCname" jdbcType="VARCHAR" property="roleCname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    roleId, roleEname, roleCname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_role
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_sys_role
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fytmss.beans.base.RoleBean">
+    <!--@mbg.generated-->
+    insert into t_sys_role (roleId, roleEname, roleCname
+      )
+    values (#{roleId,jdbcType=INTEGER}, #{roleEname,jdbcType=VARCHAR}, #{roleCname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fytmss.beans.base.RoleBean">
+    <!--@mbg.generated-->
+    insert into t_sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        roleId,
+      </if>
+      <if test="roleEname != null">
+        roleEname,
+      </if>
+      <if test="roleCname != null">
+        roleCname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleEname != null">
+        #{roleEname,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCname != null">
+        #{roleCname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.base.RoleBean">
+    <!--@mbg.generated-->
+    update t_sys_role
+    <set>
+      <if test="roleEname != null">
+        roleEname = #{roleEname,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCname != null">
+        roleCname = #{roleCname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roleId = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.RoleBean">
+    <!--@mbg.generated-->
+    update t_sys_role
+    set roleEname = #{roleEname,jdbcType=VARCHAR},
+      roleCname = #{roleCname,jdbcType=VARCHAR}
+    where roleId = #{roleId,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAllRoles" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_sys_role
+  </select>
+</mapper>

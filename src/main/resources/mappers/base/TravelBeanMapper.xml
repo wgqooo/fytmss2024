@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.TravelBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.TravelBean">
+    <!--@mbg.generated-->
+    <!--@Table t_base_travel-->
+    <id column="legalNo" jdbcType="VARCHAR" property="legalNo" />
+    <result column="travelPassword" jdbcType="VARCHAR" property="travelPassword" />
+    <result column="travelName" jdbcType="VARCHAR" property="travelName" />
+    <result column="remarkName" jdbcType="VARCHAR" property="remarkName" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="legalName" jdbcType="VARCHAR" property="legalName" />
+    <result column="legalPhone" jdbcType="VARCHAR" property="legalPhone" />
+    <result column="money" jdbcType="FLOAT" property="money" />
+    <result column="legalState" jdbcType="VARCHAR" property="legalState" />
+    <result column="isDel" jdbcType="INTEGER" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    legalNo, travelPassword, travelName, remarkName, permission, legalName, legalPhone, 
+    money, legalState, isDel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_travel
+    where legalNo = #{legalNo,jdbcType=VARCHAR}
+  </select>
+  <select id="queryTravelsInfo" resultType="com.fytmss.beans.base.TravelBean">
+    select
+    <include refid="Base_Column_List"/>
+    from t_base_travel
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_base_travel
+    where legalNo = #{legalNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fytmss.beans.base.TravelBean">
+    <!--@mbg.generated-->
+    insert into t_base_travel (legalNo, travelPassword, travelName, 
+      remarkName, permission, legalName, 
+      legalPhone, money, legalState, 
+      isDel)
+    values (#{legalNo,jdbcType=VARCHAR}, #{travelPassword,jdbcType=VARCHAR}, #{travelName,jdbcType=VARCHAR}, 
+      #{remarkName,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, #{legalName,jdbcType=VARCHAR}, 
+      #{legalPhone,jdbcType=VARCHAR}, #{money,jdbcType=FLOAT}, #{legalState,jdbcType=VARCHAR}, 
+      #{isDel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fytmss.beans.base.TravelBean">
+    <!--@mbg.generated-->
+    insert into t_base_travel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="legalNo != null">
+        legalNo,
+      </if>
+      <if test="travelPassword != null">
+        travelPassword,
+      </if>
+      <if test="travelName != null">
+        travelName,
+      </if>
+      <if test="remarkName != null">
+        remarkName,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="legalName != null">
+        legalName,
+      </if>
+      <if test="legalPhone != null">
+        legalPhone,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="legalState != null">
+        legalState,
+      </if>
+      <if test="isDel != null">
+        isDel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="legalNo != null">
+        #{legalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="travelPassword != null">
+        #{travelPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="travelName != null">
+        #{travelName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkName != null">
+        #{remarkName,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null">
+        #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=FLOAT},
+      </if>
+      <if test="legalState != null">
+        #{legalState,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.base.TravelBean">
+    <!--@mbg.generated-->
+    update t_base_travel
+    <set>
+      <if test="travelPassword != null">
+        travelPassword = #{travelPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="travelName != null">
+        travelName = #{travelName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkName != null">
+        remarkName = #{remarkName,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        legalName = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null">
+        legalPhone = #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=FLOAT},
+      </if>
+      <if test="legalState != null">
+        legalState = #{legalState,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        isDel = #{isDel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where legalNo = #{legalNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.TravelBean">
+    <!--@mbg.generated-->
+    update t_base_travel
+    set travelPassword = #{travelPassword,jdbcType=VARCHAR},
+      travelName = #{travelName,jdbcType=VARCHAR},
+      remarkName = #{remarkName,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      legalName = #{legalName,jdbcType=VARCHAR},
+      legalPhone = #{legalPhone,jdbcType=VARCHAR},
+      money = #{money,jdbcType=FLOAT},
+      legalState = #{legalState,jdbcType=VARCHAR},
+      isDel = #{isDel,jdbcType=INTEGER}
+    where legalNo = #{legalNo,jdbcType=VARCHAR}
+  </update>
+  <update id="isFreeze">
+    update t_base_travel
+    set legalState = #{param1,jdbcType=VARCHAR}
+    where legalNo = #{param2,jdbcType=VARCHAR}
+  </update>
+</mapper>

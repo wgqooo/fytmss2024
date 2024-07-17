@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.SysparaBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.SysparaBean">
+    <!--@mbg.generated-->
+    <!--@Table t_dic_syspara-->
+    <result column="dType" jdbcType="VARCHAR" property="dType" />
+    <result column="dCode" jdbcType="INTEGER" property="dCode" />
+    <result column="cPara" jdbcType="VARCHAR" property="cPara" />
+    <result column="dValue" jdbcType="VARCHAR" property="dValue" />
+    <result column="dTime" jdbcType="TIMESTAMP" property="dTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    dType, dCode, cPara, dValue, dTime
+  </sql>
+
+  <insert id="insert" parameterType="com.fytmss.beans.base.SysparaBean">
+    <!--@mbg.generated-->
+    insert into t_dic_syspara (dType, dCode, cPara, 
+      dValue)
+    values (#{dType,jdbcType=VARCHAR}, #{dCode,jdbcType=INTEGER}, #{cPara,jdbcType=VARCHAR}, 
+      #{dValue,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.fytmss.beans.base.SysparaBean">
+    <!--@mbg.generated-->
+    insert into t_dic_syspara
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dType != null">
+        dType,
+      </if>
+      <if test="dCode != null">
+        dCode,
+      </if>
+      <if test="cPara != null">
+        cPara,
+      </if>
+      <if test="dValue != null">
+        dValue,
+      </if>
+      <if test="dTime != null">
+        dTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dType != null">
+        #{dType,jdbcType=VARCHAR},
+      </if>
+      <if test="dCode != null">
+        #{dCode,jdbcType=INTEGER},
+      </if>
+      <if test="cPara != null">
+        #{cPara,jdbcType=VARCHAR},
+      </if>
+      <if test="dValue != null">
+        #{dValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dTime != null">
+        #{dTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="update" parameterType="com.fytmss.beans.base.SysparaBean">
+    update t_dic_syspara
+    set cPara = #{cPara,jdbcType=VARCHAR},
+    dValue = #{dValue,jdbcType=VARCHAR}
+    where dType = #{dType,jdbcType=VARCHAR} and dCode = #{dCode,jdbcType=INTEGER}
+  </update>
+
+  <delete id="delete" parameterType="map">
+    delete from t_dic_syspara
+    where dType = #{dType,jdbcType=VARCHAR}
+    and dCode = #{dCode,jdbcType=INTEGER}
+  </delete>
+
+  <select id="queryParamsInfo" resultType="com.fytmss.beans.base.SysparaBean">
+    select
+      dType, dCode, cPara, dValue, dTime
+    from t_dic_syspara
+  </select>
+</mapper>

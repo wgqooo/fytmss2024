@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.UserBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.UserBean">
+    <!--@mbg.generated-->
+    <!--@Table t_base_user-->
+    <id column="empNo" jdbcType="VARCHAR" property="empNo" />
+    <result column="empPassword" jdbcType="VARCHAR" property="empPassword" />
+    <result column="empName" jdbcType="VARCHAR" property="empName" />
+    <result column="empSex" jdbcType="VARCHAR" property="empSex" />
+    <result column="empBirthday" jdbcType="DATE" property="empBirthday" />
+    <result column="empMobile" jdbcType="VARCHAR" property="empMobile" />
+    <result column="empAddress" jdbcType="VARCHAR" property="empAddress" />
+    <result column="empDept" jdbcType="INTEGER" property="empDept" />
+    <result column="empPicture" jdbcType="VARCHAR" property="empPicture" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="empSalt" jdbcType="VARCHAR" property="empSalt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    empNo, empPassword, empName, empSex, empBirthday, empMobile, empAddress, empDept, 
+    empPicture, enabled, empSalt
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_user
+    where empNo = #{empno,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryUsersInfo" resultType="com.fytmss.beans.base.UserBean">
+    select
+      t_base_user.empNo, empName, empSex, empBirthday, empMobile, empAddress, enabled, t_sys_role.roleCname as roleName
+    from t_base_user
+    inner join t_sys_emprole
+    on t_base_user.empNo = t_sys_emprole.empNo
+    inner join t_sys_role
+    on t_sys_emprole.roleId = t_sys_role.roleId
+    where empBirthday is not null
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_base_user
+    where empNo = #{empno,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.fytmss.beans.base.UserBean">
+    <!--@mbg.generated-->
+    insert into t_base_user (empNo, empPassword, empName, 
+      empSex, empBirthday, empMobile, 
+      empAddress, empDept, empPicture, 
+      enabled, empSalt)
+    values (#{empNo,jdbcType=VARCHAR}, #{empPassword,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR},
+      #{empSex,jdbcType=VARCHAR}, #{empBirthday,jdbcType=DATE}, #{empMobile,jdbcType=VARCHAR},
+      #{empAddress,jdbcType=VARCHAR}, #{empDept,jdbcType=INTEGER}, #{empPicture,jdbcType=VARCHAR},
+      #{enabled,jdbcType=INTEGER},#{empSalt,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.fytmss.beans.base.UserBean">
+    <!--@mbg.generated-->
+    insert into t_base_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        empNo,
+      </if>
+      <if test="empPassword != null">
+        empPassword,
+      </if>
+      <if test="empName != null">
+        empName,
+      </if>
+      <if test="empSex != null">
+        empSex,
+      </if>
+      <if test="empBirthday != null">
+        empBirthday,
+      </if>
+      <if test="empMobile != null">
+        empMobile,
+      </if>
+      <if test="empAddress != null">
+        empAddress,
+      </if>
+      <if test="empDept != null">
+        empDept,
+      </if>
+      <if test="empPicture != null">
+        empPicture,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="empSalt != null">
+        empSalt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null">
+        #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirthday != null">
+        #{empBirthday,jdbcType=DATE},
+      </if>
+      <if test="empMobile != null">
+        #{empMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddress != null">
+        #{empAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empDept != null">
+        #{empDept,jdbcType=INTEGER},
+      </if>
+      <if test="empPicture != null">
+        #{empPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="empSalt != null">
+        #{empSalt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.base.UserBean">
+    <!--@mbg.generated-->
+    update t_base_user
+    <set>
+      <if test="empPassword != null">
+        empPassword = #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        empName = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null">
+        empSex = #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirthday != null">
+        empBirthday = #{empBirthday,jdbcType=DATE},
+      </if>
+      <if test="empMobile != null">
+        empMobile = #{empMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddress != null">
+        empAddress = #{empAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empDept != null">
+        empDept = #{empDept,jdbcType=INTEGER},
+      </if>
+      <if test="empPicture != null">
+        empPicture = #{empPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="empSalt != null">
+        empSalt = #{empSalt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where empNo = #{empNo,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.UserBean">
+    <!--@mbg.generated-->
+    update t_base_user
+    set
+      empName = #{empName,jdbcType=VARCHAR},
+      empSex = #{empSex,jdbcType=VARCHAR},
+      empBirthday = #{empBirthday,jdbcType=DATE},
+      empMobile = #{empMobile,jdbcType=VARCHAR},
+      empAddress = #{empAddress,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=INTEGER}
+    where empNo = #{empNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateEnabled">
+    update t_base_user
+    set
+      enabled = #{param1,jdbcType=INTEGER}
+    where empNo = #{param2,jdbcType=VARCHAR}
+  </update>
+</mapper>

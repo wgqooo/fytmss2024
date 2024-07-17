@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.ShipBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.ShipBean">
+    <!--@mbg.generated-->
+    <!--@Table t_base_ship-->
+    <id column="shipNo" jdbcType="VARCHAR" property="shipNo" />
+    <result column="shipName" jdbcType="VARCHAR" property="shipName" />
+    <result column="vipSeat" jdbcType="INTEGER" property="vipSeat" />
+    <result column="firSeat" jdbcType="INTEGER" property="firSeat" />
+    <result column="secSeat" jdbcType="INTEGER" property="secSeat" />
+    <result column="shiptimeState" jdbcType="INTEGER" property="shiptimeState" />
+    <result column="seatDis" jdbcType="VARCHAR" property="seatDis" />
+    <result column="shipMemo" jdbcType="INTEGER" property="shipMemo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    shipNo, shipName, vipSeat, firSeat, secSeat, shiptimeState, seatDis, shipMemo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_ship
+    where shipNo = #{shipNo,jdbcType=VARCHAR}
+  </select>
+  <select id="queryShipsInfo" resultType="com.fytmss.beans.base.ShipBean">
+    select
+    <include refid="Base_Column_List"/>
+    from t_base_ship
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_base_ship
+    where shipNo = #{shipNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fytmss.beans.base.ShipBean">
+    <!--@mbg.generated-->
+    insert into t_base_ship (shipNo, shipName, vipSeat, 
+      firSeat, secSeat, shiptimeState, 
+      seatDis, shipMemo)
+    values (#{shipNo,jdbcType=VARCHAR}, #{shipName,jdbcType=VARCHAR}, #{vipSeat,jdbcType=INTEGER}, 
+      #{firSeat,jdbcType=INTEGER}, #{secSeat,jdbcType=INTEGER}, #{shiptimeState,jdbcType=INTEGER}, 
+      #{seatDis,jdbcType=VARCHAR}, #{shipMemo,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fytmss.beans.base.ShipBean">
+    <!--@mbg.generated-->
+    insert into t_base_ship
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shipNo != null">
+        shipNo,
+      </if>
+      <if test="shipName != null">
+        shipName,
+      </if>
+      <if test="vipSeat != null">
+        vipSeat,
+      </if>
+      <if test="firSeat != null">
+        firSeat,
+      </if>
+      <if test="secSeat != null">
+        secSeat,
+      </if>
+      <if test="shiptimeState != null">
+        shiptimeState,
+      </if>
+      <if test="seatDis != null">
+        seatDis,
+      </if>
+      <if test="shipMemo != null">
+        shipMemo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shipNo != null">
+        #{shipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipName != null">
+        #{shipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipSeat != null">
+        #{vipSeat,jdbcType=INTEGER},
+      </if>
+      <if test="firSeat != null">
+        #{firSeat,jdbcType=INTEGER},
+      </if>
+      <if test="secSeat != null">
+        #{secSeat,jdbcType=INTEGER},
+      </if>
+      <if test="shiptimeState != null">
+        #{shiptimeState,jdbcType=INTEGER},
+      </if>
+      <if test="seatDis != null">
+        #{seatDis,jdbcType=VARCHAR},
+      </if>
+      <if test="shipMemo != null">
+        #{shipMemo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.base.ShipBean">
+    <!--@mbg.generated-->
+    update t_base_ship
+    <set>
+      <if test="shipName != null">
+        shipName = #{shipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipSeat != null">
+        vipSeat = #{vipSeat,jdbcType=INTEGER},
+      </if>
+      <if test="firSeat != null">
+        firSeat = #{firSeat,jdbcType=INTEGER},
+      </if>
+      <if test="secSeat != null">
+        secSeat = #{secSeat,jdbcType=INTEGER},
+      </if>
+      <if test="shiptimeState != null">
+        shiptimeState = #{shiptimeState,jdbcType=INTEGER},
+      </if>
+      <if test="seatDis != null">
+        seatDis = #{seatDis,jdbcType=VARCHAR},
+      </if>
+      <if test="shipMemo != null">
+        shipMemo = #{shipMemo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shipNo = #{shipNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.ShipBean">
+    <!--@mbg.generated-->
+    update t_base_ship
+    set shipName = #{shipName,jdbcType=VARCHAR},
+      vipSeat = #{vipSeat,jdbcType=INTEGER},
+      firSeat = #{firSeat,jdbcType=INTEGER},
+      secSeat = #{secSeat,jdbcType=INTEGER},
+      shiptimeState = #{shiptimeState,jdbcType=INTEGER},
+      seatDis = #{seatDis,jdbcType=VARCHAR},
+      shipMemo = #{shipMemo,jdbcType=INTEGER}
+    where shipNo = #{shipNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryAllShips" resultMap="BaseResultMap">
+    select shipNo,shipName,shipMemo
+    from t_base_ship
+  </select>
+</mapper>

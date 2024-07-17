@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.TravellerBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.TravellerBean">
+    <!--@mbg.generated-->
+    <!--@Table t_base_traveller-->
+    <id column="passportNo" jdbcType="VARCHAR" property="passportNo" />
+    <result column="trName" jdbcType="VARCHAR" property="trName" />
+    <result column="trPinYin" jdbcType="VARCHAR" property="trPinYin" />
+    <result column="trPhone" jdbcType="VARCHAR" property="trPhone" />
+    <result column="trTmpPhone" jdbcType="VARCHAR" property="trTmpPhone" />
+    <result column="trPwd" jdbcType="VARCHAR" property="trPwd" />
+    <result column="trSex" jdbcType="INTEGER" property="trSex" />
+    <result column="trBirthday" jdbcType="DATE" property="trBirthday" />
+    <result column="trBorAdd" jdbcType="VARCHAR" property="trBorAdd" />
+    <result column="trNation" jdbcType="VARCHAR" property="trNation" />
+    <result column="trTravel" jdbcType="VARCHAR" property="trTravel" />
+    <result column="inSertDate" jdbcType="TIMESTAMP" property="inSertDate" />
+    <result column="trRelationPer" jdbcType="VARCHAR" property="trRelationPer" />
+    <result column="trAuthen" jdbcType="INTEGER" property="trAuthen" />
+    <result column="trPortPhoto" jdbcType="VARCHAR" property="trPortPhoto" />
+    <result column="trPortPhotoBack" jdbcType="VARCHAR" property="trPortPhotoBack" />
+    <result column="trCheckTime" jdbcType="TIMESTAMP" property="trCheckTime" />
+    <result column="isDel" jdbcType="INTEGER" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    passportNo, trName, trPinYin, trPhone, trTmpPhone, trPwd, trSex, trBirthday, trBorAdd, 
+    trNation, trTravel, inSertDate, trRelationPer, trAuthen, trPortPhoto, trPortPhotoBack, 
+    trCheckTime, isDel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_traveller
+    where passportNo = #{passportNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_base_traveller
+    where passportNo = #{passportNo,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.fytmss.beans.base.TravellerBean">
+    <!--@mbg.generated-->
+    insert into t_base_traveller (passportNo, trName, trPinYin,
+    trPhone, trTmpPhone,
+    trSex, trBirthday, trBorAdd,
+    trNation, trTravel, trAuthen, isDel
+    )
+    values (#{passportNo,jdbcType=VARCHAR}, #{trName,jdbcType=VARCHAR}, #{trPinYin,jdbcType=VARCHAR},
+    #{trPhone,jdbcType=VARCHAR}, #{trTmpPhone,jdbcType=VARCHAR},
+    #{trSex,jdbcType=INTEGER}, #{trBirthday,jdbcType=DATE}, #{trBorAdd,jdbcType=VARCHAR},
+    #{trNation,jdbcType=VARCHAR}, #{trTravel,jdbcType=VARCHAR}, #{trAuthen,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}
+    )
+  </insert>
+
+  <insert id="insertByBatch" parameterType="com.fytmss.beans.base.TravellerBean">
+    insert into t_base_traveller (passportNo, trName, trPinYin,
+    trPhone, trTmpPhone,
+    trSex, trBirthday, trBorAdd,
+    trNation, trTravel, trAuthen, isDel
+    )
+    values (#{passportNo,jdbcType=VARCHAR}, #{trName,jdbcType=VARCHAR}, #{trPinYin,jdbcType=VARCHAR},
+    #{trPhone,jdbcType=VARCHAR}, #{trTmpPhone,jdbcType=VARCHAR},
+    #{trSex,jdbcType=INTEGER}, #{trBirthday,jdbcType=DATE}, #{trBorAdd,jdbcType=VARCHAR},
+    #{trNation,jdbcType=VARCHAR}, #{trTravel,jdbcType=VARCHAR}, #{trAuthen,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}
+    )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.fytmss.beans.base.TravellerBean">
+    <!--@mbg.generated-->
+    insert into t_base_traveller
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="passportNo != null">
+        passportNo,
+      </if>
+      <if test="trName != null">
+        trName,
+      </if>
+      <if test="trPinYin != null">
+        trPinYin,
+      </if>
+      <if test="trPhone != null">
+        trPhone,
+      </if>
+      <if test="trTmpPhone != null">
+        trTmpPhone,
+      </if>
+      <if test="trPwd != null">
+        trPwd,
+      </if>
+      <if test="trSex != null">
+        trSex,
+      </if>
+      <if test="trBirthday != null">
+        trBirthday,
+      </if>
+      <if test="trBorAdd != null">
+        trBorAdd,
+      </if>
+      <if test="trNation != null">
+        trNation,
+      </if>
+      <if test="trTravel != null">
+        trTravel,
+      </if>
+      <if test="inSertDate != null">
+        inSertDate,
+      </if>
+      <if test="trRelationPer != null">
+        trRelationPer,
+      </if>
+      <if test="trAuthen != null">
+        trAuthen,
+      </if>
+      <if test="trPortPhoto != null">
+        trPortPhoto,
+      </if>
+      <if test="trPortPhotoBack != null">
+        trPortPhotoBack,
+      </if>
+      <if test="trCheckTime != null">
+        trCheckTime,
+      </if>
+      <if test="isDel != null">
+        isDel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="passportNo != null">
+        #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trName != null">
+        #{trName,jdbcType=VARCHAR},
+      </if>
+      <if test="trPinYin != null">
+        #{trPinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="trPhone != null">
+        #{trPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="trTmpPhone != null">
+        #{trTmpPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="trPwd != null">
+        #{trPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="trSex != null">
+        #{trSex,jdbcType=INTEGER},
+      </if>
+      <if test="trBirthday != null">
+        #{trBirthday,jdbcType=DATE},
+      </if>
+      <if test="trBorAdd != null">
+        #{trBorAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="trNation != null">
+        #{trNation,jdbcType=VARCHAR},
+      </if>
+      <if test="trTravel != null">
+        #{trTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="inSertDate != null">
+        #{inSertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trRelationPer != null">
+        #{trRelationPer,jdbcType=VARCHAR},
+      </if>
+      <if test="trAuthen != null">
+        #{trAuthen,jdbcType=INTEGER},
+      </if>
+      <if test="trPortPhoto != null">
+        #{trPortPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="trPortPhotoBack != null">
+        #{trPortPhotoBack,jdbcType=VARCHAR},
+      </if>
+      <if test="trCheckTime != null">
+        #{trCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.base.TravellerBean">
+    <!--@mbg.generated-->
+    update t_base_traveller
+    <set>
+      <if test="trName != null">
+        trName = #{trName,jdbcType=VARCHAR},
+      </if>
+      <if test="trPinYin != null">
+        trPinYin = #{trPinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="trPhone != null">
+        trPhone = #{trPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="trTmpPhone != null">
+        trTmpPhone = #{trTmpPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="trPwd != null">
+        trPwd = #{trPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="trSex != null">
+        trSex = #{trSex,jdbcType=INTEGER},
+      </if>
+      <if test="trBirthday != null">
+        trBirthday = #{trBirthday,jdbcType=DATE},
+      </if>
+      <if test="trBorAdd != null">
+        trBorAdd = #{trBorAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="trNation != null">
+        trNation = #{trNation,jdbcType=VARCHAR},
+      </if>
+      <if test="trTravel != null">
+        trTravel = #{trTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="inSertDate != null">
+        inSertDate = #{inSertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trRelationPer != null">
+        trRelationPer = #{trRelationPer,jdbcType=VARCHAR},
+      </if>
+      <if test="trAuthen != null">
+        trAuthen = #{trAuthen,jdbcType=INTEGER},
+      </if>
+      <if test="trPortPhoto != null">
+        trPortPhoto = #{trPortPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="trPortPhotoBack != null">
+        trPortPhotoBack = #{trPortPhotoBack,jdbcType=VARCHAR},
+      </if>
+      <if test="trCheckTime != null">
+        trCheckTime = #{trCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        isDel = #{isDel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where passportNo = #{passportNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.TravellerBean">
+    <!--@mbg.generated-->
+    update t_base_traveller
+    set trName = #{trName,jdbcType=VARCHAR},
+      trPinYin = #{trPinYin,jdbcType=VARCHAR},
+      trPhone = #{trPhone,jdbcType=VARCHAR},
+      trTmpPhone = #{trTmpPhone,jdbcType=VARCHAR},
+      trPwd = #{trPwd,jdbcType=VARCHAR},
+      trSex = #{trSex,jdbcType=INTEGER},
+      trBirthday = #{trBirthday,jdbcType=DATE},
+      trBorAdd = #{trBorAdd,jdbcType=VARCHAR},
+      trNation = #{trNation,jdbcType=VARCHAR},
+      trTravel = #{trTravel,jdbcType=VARCHAR},
+      inSertDate = #{inSertDate,jdbcType=TIMESTAMP},
+      trRelationPer = #{trRelationPer,jdbcType=VARCHAR},
+      trAuthen = #{trAuthen,jdbcType=INTEGER},
+      trPortPhoto = #{trPortPhoto,jdbcType=VARCHAR},
+      trPortPhotoBack = #{trPortPhotoBack,jdbcType=VARCHAR},
+      trCheckTime = #{trCheckTime,jdbcType=TIMESTAMP},
+      isDel = #{isDel,jdbcType=INTEGER}
+    where passportNo = #{passportNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryTravellersInfo" resultType="com.fytmss.beans.base.TravellerBean">
+    select
+    passportNo,trName,trPinYin,trPhone,trTmpPhone,trSex,trBirthday,trBorAdd,trNation,travelName
+    from t_base_traveller
+    inner join t_base_travel
+    on t_base_traveller.trTravel = t_base_travel.legalNo
+  </select>
+
+  <select id="queryTravellersInfoByCondition" resultType="com.fytmss.beans.base.TravellerBean">
+    select
+    passportNo, trName, trPinYin, trPhone, trTmpPhone, trSex, trBirthday, trBorAdd, trNation, travelName
+    from t_base_traveller
+    inner join t_base_travel
+    on t_base_traveller.trTravel = t_base_travel.legalNo
+    where passportNo like concat('%', #{param1,jdbcType=VARCHAR}, '%') and trName like concat('%', #{param2,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="queryTravellersInfoByParams" resultType="com.fytmss.beans.base.TravellerBean">
+    select
+    t1.passportNo, t1.trName, trPinYin, trPhone, trTmpPhone, trSex, trBirthday, trBorAdd, trNation, legalNo, tickCost, tickDate
+    from t_data_ticket t1
+    inner join t_base_traveller tr on t1.passportNo = tr.passportNo
+    where t1.tickDate = (
+        select MAX(t2.tickDate)
+        from t_data_ticket t2
+        where t2.passportNo = t1.passportNo
+    )
+    and t1.passportNo like concat('%', #{param1,jdbcType=VARCHAR}, '%') and t1.trName like concat('%', #{param2,jdbcType=VARCHAR}, '%')
+  </select>
+</mapper>

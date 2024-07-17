@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.voyage.VoyageBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.voyage.VoyageBean">
+    <!--@mbg.generated-->
+    <!--@Table t_data_voyage-->
+    <id column="voyDate" jdbcType="DATE" property="voyDate" />
+    <id column="voyNo" jdbcType="VARCHAR" property="voyNo" />
+    <result column="shipNo" jdbcType="VARCHAR" property="shipNo" />
+    <result column="reShipNo" jdbcType="VARCHAR" property="reShipNo" />
+    <result column="startTime" jdbcType="TIME" property="startTime" />
+    <result column="startPort" jdbcType="INTEGER" property="startPort" />
+    <result column="firRes" jdbcType="INTEGER" property="firRes" />
+    <result column="secRes" jdbcType="INTEGER" property="secRes" />
+    <result column="vipVisa" jdbcType="INTEGER" property="vipVisa" />
+    <result column="vipRes" jdbcType="INTEGER" property="vipRes" />
+    <result column="firVisa" jdbcType="INTEGER" property="firVisa" />
+    <result column="secVisa" jdbcType="INTEGER" property="secVisa" />
+    <result column="vipPrice" jdbcType="INTEGER" property="vipPrice" />
+    <result column="firPrice" jdbcType="INTEGER" property="firPrice" />
+    <result column="secPrice" jdbcType="INTEGER" property="secPrice" />
+    <result column="voyState" jdbcType="INTEGER" property="voyState" />
+    <result column="voyMemo" jdbcType="VARCHAR" property="voyMemo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    voyDate, voyNo, shipNo, reShipNo, startTime, startPort, firRes, secRes, vipVisa, 
+    vipRes, firVisa, secVisa, vipPrice, firPrice, secPrice, voyState, voyMemo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_data_voyage
+    where voyDate = #{voyDate,jdbcType=DATE}
+      and voyNo = #{voyNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryVoyagesInfo" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select
+      voyDate, voyNo, t_data_voyage.shipNo, reShipNo, startTime, startPort, firRes, secRes, vipVisa,
+      vipRes, firVisa, secVisa, vipPrice, firPrice, secPrice, voyState, voyMemo,
+      s1.shipName, s2.shipName as reShipName
+    from t_data_voyage
+    inner join t_base_ship s1
+    on t_data_voyage.shipNo = s1.shipNo
+    inner join t_base_ship s2
+    on t_data_voyage.reShipNo = s2.shipNo
+    where
+      voyDate between #{param1,jdbcType=VARCHAR} and #{param2,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    <!--@mbg.generated-->
+    delete from t_data_voyage
+    where voyDate = #{voyDate,jdbcType=DATE}
+      and voyNo = #{voyNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fytmss.beans.voyage.VoyageBean">
+    <!--@mbg.generated-->
+    insert into t_data_voyage (voyDate, voyNo, shipNo, 
+      reShipNo, startTime, startPort, 
+      firRes, secRes, vipVisa, 
+      vipRes, firVisa, secVisa, 
+      vipPrice, firPrice, secPrice, 
+      voyState, voyMemo)
+    values (#{voyDate,jdbcType=DATE}, #{voyNo,jdbcType=VARCHAR}, #{shipNo,jdbcType=VARCHAR}, 
+      #{reShipNo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIME}, #{startPort,jdbcType=INTEGER}, 
+      #{firRes,jdbcType=INTEGER}, #{secRes,jdbcType=INTEGER}, #{vipVisa,jdbcType=INTEGER}, 
+      #{vipRes,jdbcType=INTEGER}, #{firVisa,jdbcType=INTEGER}, #{secVisa,jdbcType=INTEGER}, 
+      #{vipPrice,jdbcType=INTEGER}, #{firPrice,jdbcType=INTEGER}, #{secPrice,jdbcType=INTEGER}, 
+      #{voyState,jdbcType=INTEGER}, #{voyMemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fytmss.beans.voyage.VoyageBean">
+    <!--@mbg.generated-->
+    insert into t_data_voyage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="voyDate != null">
+        voyDate,
+      </if>
+      <if test="voyNo != null">
+        voyNo,
+      </if>
+      <if test="shipNo != null">
+        shipNo,
+      </if>
+      <if test="reShipNo != null">
+        reShipNo,
+      </if>
+      <if test="startTime != null">
+        startTime,
+      </if>
+      <if test="startPort != null">
+        startPort,
+      </if>
+      <if test="firRes != null">
+        firRes,
+      </if>
+      <if test="secRes != null">
+        secRes,
+      </if>
+      <if test="vipVisa != null">
+        vipVisa,
+      </if>
+      <if test="vipRes != null">
+        vipRes,
+      </if>
+      <if test="firVisa != null">
+        firVisa,
+      </if>
+      <if test="secVisa != null">
+        secVisa,
+      </if>
+      <if test="vipPrice != null">
+        vipPrice,
+      </if>
+      <if test="firPrice != null">
+        firPrice,
+      </if>
+      <if test="secPrice != null">
+        secPrice,
+      </if>
+      <if test="voyState != null">
+        voyState,
+      </if>
+      <if test="voyMemo != null">
+        voyMemo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="voyDate != null">
+        #{voyDate,jdbcType=DATE},
+      </if>
+      <if test="voyNo != null">
+        #{voyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipNo != null">
+        #{shipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reShipNo != null">
+        #{reShipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="startPort != null">
+        #{startPort,jdbcType=INTEGER},
+      </if>
+      <if test="firRes != null">
+        #{firRes,jdbcType=INTEGER},
+      </if>
+      <if test="secRes != null">
+        #{secRes,jdbcType=INTEGER},
+      </if>
+      <if test="vipVisa != null">
+        #{vipVisa,jdbcType=INTEGER},
+      </if>
+      <if test="vipRes != null">
+        #{vipRes,jdbcType=INTEGER},
+      </if>
+      <if test="firVisa != null">
+        #{firVisa,jdbcType=INTEGER},
+      </if>
+      <if test="secVisa != null">
+        #{secVisa,jdbcType=INTEGER},
+      </if>
+      <if test="vipPrice != null">
+        #{vipPrice,jdbcType=INTEGER},
+      </if>
+      <if test="firPrice != null">
+        #{firPrice,jdbcType=INTEGER},
+      </if>
+      <if test="secPrice != null">
+        #{secPrice,jdbcType=INTEGER},
+      </if>
+      <if test="voyState != null">
+        #{voyState,jdbcType=INTEGER},
+      </if>
+      <if test="voyMemo != null">
+        #{voyMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.voyage.VoyageBean">
+    <!--@mbg.generated-->
+    update t_data_voyage
+    <set>
+      <if test="shipNo != null">
+        shipNo = #{shipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reShipNo != null">
+        reShipNo = #{reShipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        startTime = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="startPort != null">
+        startPort = #{startPort,jdbcType=INTEGER},
+      </if>
+      <if test="firRes != null">
+        firRes = #{firRes,jdbcType=INTEGER},
+      </if>
+      <if test="secRes != null">
+        secRes = #{secRes,jdbcType=INTEGER},
+      </if>
+      <if test="vipVisa != null">
+        vipVisa = #{vipVisa,jdbcType=INTEGER},
+      </if>
+      <if test="vipRes != null">
+        vipRes = #{vipRes,jdbcType=INTEGER},
+      </if>
+      <if test="firVisa != null">
+        firVisa = #{firVisa,jdbcType=INTEGER},
+      </if>
+      <if test="secVisa != null">
+        secVisa = #{secVisa,jdbcType=INTEGER},
+      </if>
+      <if test="vipPrice != null">
+        vipPrice = #{vipPrice,jdbcType=INTEGER},
+      </if>
+      <if test="firPrice != null">
+        firPrice = #{firPrice,jdbcType=INTEGER},
+      </if>
+      <if test="secPrice != null">
+        secPrice = #{secPrice,jdbcType=INTEGER},
+      </if>
+      <if test="voyState != null">
+        voyState = #{voyState,jdbcType=INTEGER},
+      </if>
+      <if test="voyMemo != null">
+        voyMemo = #{voyMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where voyDate = #{voyDate,jdbcType=DATE}
+      and voyNo = #{voyNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.voyage.VoyageBean">
+    <!--@mbg.generated-->
+    update t_data_voyage
+    set shipNo = #{shipNo,jdbcType=VARCHAR},
+      reShipNo = #{reShipNo,jdbcType=VARCHAR},
+      startTime = #{startTime,jdbcType=TIME},
+      startPort = #{startPort,jdbcType=INTEGER},
+      firRes = #{firRes,jdbcType=INTEGER},
+      secRes = #{secRes,jdbcType=INTEGER},
+      vipVisa = #{vipVisa,jdbcType=INTEGER},
+      vipRes = #{vipRes,jdbcType=INTEGER},
+      firVisa = #{firVisa,jdbcType=INTEGER},
+      secVisa = #{secVisa,jdbcType=INTEGER},
+      vipPrice = #{vipPrice,jdbcType=INTEGER},
+      firPrice = #{firPrice,jdbcType=INTEGER},
+      secPrice = #{secPrice,jdbcType=INTEGER},
+      voyState = #{voyState,jdbcType=INTEGER},
+      voyMemo = #{voyMemo,jdbcType=VARCHAR}
+    where voyDate = #{voyDate,jdbcType=DATE}
+      and voyNo = #{voyNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAllVoyages" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select DISTINCT t_base_ship.shipNo,voyNo,t_base_ship.shipName
+    from t_data_voyage
+    INNER JOIN t_base_ship
+    on t_data_voyage.shipNo = t_base_ship.shipNo
+  </select>
+
+  <select id="getAllVoyNo" resultType="java.lang.String">
+    select DISTINCT voyNo
+    from t_data_voyage;
+  </select>
+
+  <update id="alterVoyState">
+    update t_data_voyage
+    set
+      voyState = #{param3,jdbcType=INTEGER}
+    where voyDate = #{param1,jdbcType=VARCHAR} and voyNo = #{param2,jdbcType=INTEGER}
+  </update>
+
+  <select id="getAllVoyagesByDate" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select
+      voyDate, voyNo, t_data_voyage.shipNo, reShipNo, startTime, startPort, firRes, secRes, vipVisa,
+      vipRes, firVisa, secVisa, vipPrice, firPrice, secPrice, voyState, voyMemo,
+      s1.shipName
+    from t_data_voyage
+    inner join t_base_ship s1
+    on t_data_voyage.shipNo = s1.shipNo
+    where voyDate = #{voyDate,jdbcType=VARCHAR}
+  </select>
+
+
+  <insert id="insertVoyagesByBatch" parameterType="java.util.List">
+    insert into
+      t_data_voyage(voyDate, voyNo, shipNo, reShipNo, startTime, startPort, firRes, secRes, vipVisa,
+                     vipRes, firVisa, secVisa, vipPrice, firPrice, secPrice, voyState, voyMemo)
+      values
+      <foreach collection="list" item="voyage" separator=",">
+        (
+        #{voyage.voyDate,jdbcType=VARCHAR},
+        #{voyage.voyNo,jdbcType=VARCHAR},
+        #{voyage.shipNo,jdbcType=VARCHAR},
+        #{voyage.reShipNo,jdbcType=VARCHAR},
+        #{voyage.startTime,jdbcType=VARCHAR},
+        #{voyage.startPort,jdbcType=VARCHAR},
+        #{voyage.firRes,jdbcType=VARCHAR},
+        #{voyage.secRes,jdbcType=VARCHAR},
+        #{voyage.vipVisa,jdbcType=VARCHAR},
+        #{voyage.vipRes,jdbcType=VARCHAR},
+        #{voyage.firVisa,jdbcType=VARCHAR},
+        #{voyage.secVisa,jdbcType=VARCHAR},
+        #{voyage.vipPrice,jdbcType=VARCHAR},
+        #{voyage.firPrice,jdbcType=VARCHAR},
+        #{voyage.secPrice,jdbcType=VARCHAR},
+        #{voyage.voyState,jdbcType=VARCHAR},
+        #{voyage.voyMemo,jdbcType=VARCHAR}
+        )
+      </foreach>
+  </insert>
+
+  <delete id="delBatchVoys" parameterType="java.util.List">
+    DELETE FROM t_data_voyage
+    WHERE (voyDate, voyNo) IN
+    <foreach collection="list" item="voyage" separator="," open="(" close=")">
+      (#{voyage.voyDate}, #{voyage.voyNo})
+    </foreach>
+  </delete>
+
+  <select id="getAllVoyagesBetweenDate" resultType="com.fytmss.beans.voyage.VoyageBean">
+    SELECT voyDate, voyNo, s.shipNo, startTime, s.shipName, startPort, vipRes, firRes, secRes, vipVisa, firVisa, secVisa, vipPrice, firPrice, secPrice, vipSeat, firSeat, secSeat,
+    vipSeat - vipRes- COALESCE(SUM(CASE WHEN ((t.startSeat = 'VIP座' and t.state IN ('未检票', '改签', '已检票')) or (t.returnSeat = 'VIP座' and t.returnState IN ('未检票', '改签', '已检票'))) THEN 1 ELSE 0 END), 0) AS vipLeft,
+    firSeat - firRes- COALESCE(SUM(CASE WHEN ((t.startSeat = '一等座' and t.state IN ('未检票', '改签', '已检票')) or (t.returnSeat = '一等座' and t.returnState IN ('未检票', '改签', '已检票'))) THEN 1 ELSE 0 END), 0) AS firLeft,
+    secSeat - secRes- COALESCE(SUM(CASE WHEN ((t.startSeat = '二等座' and t.state IN ('未检票', '改签', '已检票')) or (t.returnSeat = '二等座' and t.returnState IN ('未检票', '改签', '已检票'))) THEN 1 ELSE 0 END), 0) AS secLeft
+    FROM t_data_voyage v
+    LEFT JOIN t_base_ship s ON v.shipNo = s.shipNo
+    LEFT JOIN t_data_ticket t ON ((CONCAT(date_format(v.voyDate, '%Y-%c-%d'), ' ', date_format(v.startTime, '%H:%i:%s')) = t.startDate and v.voyNo = t.startVoyNo) or (CONCAT(date_format(v.voyDate, '%Y-%c-%d'), ' ', date_format(v.startTime, '%H:%i:%s')) = t.returnDate and v.voyNo = t.returnVoyNo))
+    where voyDate BETWEEN #{param2, jdbcType = VARCHAR} and #{param3, jdbcType = VARCHAR}
+      and voyState = 1
+      and startPort = #{param1, jdbcType = INTEGER}
+    GROUP BY v.voyDate, v.startTime, v.voyNo
+  </select>
+
+  <select id="getVoyByParams" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select voyNo, s.shipNo, shipName, voyDate, startTime, startPort, vipSeat, firSeat, secSeat
+    from t_data_voyage v
+    inner join t_base_ship s
+    on v.reShipNo = s.shipNo
+    where voyNo = #{param1, jdbcType = VARCHAR} and voyDate = #{param2, jdbcType = VARCHAR} and startTime = #{param3, jdbcType = VARCHAR}
+  </select>
+
+  <select id="queryCarryInfoByDate" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select voyNo, voyDate, reShipNo, shipName, teamNo, travelName, count(*) as teamNum
+    from t_data_voyage v
+    inner join t_base_ship s
+    on v.reShipNo = s.shipNo
+    inner join t_data_ticket t
+    on (v.voyNo = t.startVoyNo and CONCAT(date_format(v.voyDate, '%Y-%c-%d'), ' ', date_format(v.startTime, '%H:%i:%s')) = t.startDate)
+    inner JOIN t_base_travel tr
+    on tr.legalNo = t.legalNo
+    where voyDate between #{param1,jdbcType=VARCHAR} and #{param2,jdbcType=VARCHAR}
+    GROUP BY voyNo, voyDate, reShipNo, shipName, teamNo, travelName
+  </select>
+
+  <select id="queryCarryDetailsByDate" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select startPort, shipName, travellerType, count(*) as teamNum
+    from t_data_voyage v
+    inner join t_base_ship s
+    on v.reShipNo = s.shipNo
+    inner join t_data_ticket t
+    on (v.voyNo = t.startVoyNo and CONCAT(date_format(v.voyDate, '%Y-%c-%d'), ' ', date_format(v.startTime, '%H:%i:%s')) = t.startDate)
+    inner JOIN t_base_travel tr
+    on tr.legalNo = t.legalNo
+    where voyDate = #{date, jdbcType=VARCHAR}
+    GROUP BY startPort, shipName, travellerType
+  </select>
+
+  <select id="queryRCarryDetailsByDate" resultType="com.fytmss.beans.voyage.VoyageBean">
+    select startPort, shipName, travellerType, count(*) as teamNum
+    from t_data_voyage v
+    inner join t_base_ship s
+    on v.reShipNo = s.shipNo
+    inner join t_data_ticket t
+    on (v.voyNo = t.returnVoyNo and CONCAT(date_format(v.voyDate, '%Y-%c-%d'), ' ', date_format(v.startTime, '%H:%i:%s')) = t.returnDate)
+    inner JOIN t_base_travel tr
+    on tr.legalNo = t.legalNo
+    where voyDate = #{date, jdbcType=VARCHAR}
+    GROUP BY startPort, shipName, travellerType
+  </select>
+</mapper>

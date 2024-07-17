@@ -1,0 +1,51 @@
+关于分页的参数
+pageNum=1,当前页码
+pageSize=1,每页个数
+size=1,当前页个数
+startRow=1,由第几条开始
+endRow=1,到第几条结束
+total=3,总条数
+pages=3,总页数
+list= XXXX 查出出来的数据集合
+prePage=0,上一页
+nextPage=2,下一页
+isFirstPage=true,是否为首页
+isLastPage=false,是否为尾页
+hasPreviousPage=false,是否有上一页
+hasNextPage=true,是否有下一页
+navigatePages=8,每页显示的页码个数
+navigateFirstPage=1,首页
+navigateLastPage=3,尾页
+navigatepageNums=[1, 2, 3]}页码数
+
+关于requestParam
+    // 可带参数可不带参数，方法都能执行
+    @RequestMapping("/list")
+    public String test1(Long userId){
+        return "";
+    }
+    //必须带参数，不带参数会报错，不会执行方法
+    @RequestMapping("/list")
+    public String test2(@RequestParam Long userId){
+        return "";
+    }
+    //true代表必须带参数，和tes2一样
+    @RequestMapping("/list")
+    public String test3(@RequestParam(required = true) Long userId){
+        return "";
+    }
+    //和test1一样，可以带参数也可以不带参数
+    @RequestMapping("/list")
+    public String test4(@RequestParam(required = false) Long userId){
+        return "";
+    }
+    //在地址里面可以不带参数，如果带了参数会接收，不带参数会默认为0
+    @RequestMapping("/list")
+    public String test(@RequestParam(defaultValue = "0") Long userId){
+        return "";
+    }
+    //前面几种写法中参数必须为userId才能接收到值，但是如果加了value树形，会用userId，地址里面传入的参数名称为id
+    @RequestMapping("/list")
+    public String test5(@RequestParam(value = "id") Long userId){
+        return "";
+    }

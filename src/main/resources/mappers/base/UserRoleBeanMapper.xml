@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.base.UserRoleBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.base.UserRoleBean">
+    <!--@mbg.generated-->
+    <!--@Table t_sys_emprole-->
+    <id column="empRoleId" jdbcType="INTEGER" property="empRoleId" />
+    <result column="empNo" jdbcType="VARCHAR" property="empNo" />
+    <result column="roleId" jdbcType="INTEGER" property="roleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    empRoleId, empNo, roleId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_emprole
+    where empRoleId = #{empRoleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_sys_emprole
+    where empRoleId = #{empRoleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByEmpNo" parameterType="java.lang.String">
+    delete from t_sys_emprole
+    where empNo = #{empNo,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" keyColumn="empRoleId" keyProperty="empRoleId" parameterType="com.fytmss.beans.base.UserRoleBean" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_sys_emprole (empNo, roleId)
+    values (#{empNo,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="empRoleId" keyProperty="empRoleId" parameterType="com.fytmss.beans.base.UserRoleBean" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_sys_emprole
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        empNo,
+      </if>
+      <if test="roleId != null">
+        roleId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.base.UserRoleBean">
+    <!--@mbg.generated-->
+    update t_sys_emprole
+    <set>
+      <if test="empNo != null">
+        empNo = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        roleId = #{roleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where empRoleId = #{empRoleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.UserRoleBean">
+    <!--@mbg.generated-->
+    update t_sys_emprole
+    set empNo = #{empNo,jdbcType=VARCHAR},
+      roleId = #{roleId,jdbcType=INTEGER}
+    where empRoleId = #{empRoleId,jdbcType=INTEGER}
+  </update>
+    
+  <select id="queryRoleIdList" resultType="java.lang.Integer">
+    select roleId
+    from t_sys_emprole
+    where empNo = #{empNo,jdbcType=INTEGER}
+  </select>
+
+  <select id="queryRoleNameByEmpNo" resultType="java.lang.String">
+    select roleEname from t_sys_emprole
+    inner join t_sys_role
+    on t_sys_role.roleId = t_sys_emprole.roleId
+    where empNo = #{empNo,jdbcType=INTEGER}
+  </select>
+  <select id="queryByEmpNo" resultType="com.fytmss.beans.base.UserRoleBean">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_emprole
+    where empNo = #{empNo,jdbcType=INTEGER}
+  </select>
+</mapper>

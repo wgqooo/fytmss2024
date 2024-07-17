@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fytmss.mapper.ticket.TicketBeanMapper">
+  <resultMap id="BaseResultMap" type="com.fytmss.beans.ticket.TicketBean">
+    <!--@mbg.generated-->
+    <!--@Table t_data_ticket-->
+    <id column="tickNo" jdbcType="VARCHAR" property="tickNo" />
+    <result column="passportNo" jdbcType="VARCHAR" property="passportNo" />
+    <result column="trName" jdbcType="VARCHAR" property="trName" />
+    <result column="legalNo" jdbcType="VARCHAR" property="legalNo" />
+    <result column="bookPassNo" jdbcType="VARCHAR" property="bookPassNo" />
+    <result column="teamNo" jdbcType="VARCHAR" property="teamNo" />
+    <result column="tickDate" jdbcType="TIMESTAMP" property="tickDate" />
+    <result column="startDate" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="startVoyNo" jdbcType="VARCHAR" property="startVoyNo" />
+    <result column="startSeat" jdbcType="VARCHAR" property="startSeat" />
+    <result column="returnDate" jdbcType="TIMESTAMP" property="returnDate" />
+    <result column="returnVoyNo" jdbcType="VARCHAR" property="returnVoyNo" />
+    <result column="returnSeat" jdbcType="VARCHAR" property="returnSeat" />
+    <result column="printDate" jdbcType="TIMESTAMP" property="printDate" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="stateDate" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="changeTDate" jdbcType="TIMESTAMP" property="changeTDate" />
+    <result column="tickRefund" jdbcType="FLOAT" property="tickRefund" />
+    <result column="tickCost" jdbcType="FLOAT" property="tickCost" />
+    <result column="payType" jdbcType="VARCHAR" property="payType" />
+    <result column="isGuide" jdbcType="VARCHAR" property="isGuide" />
+    <result column="guideNum" jdbcType="INTEGER" property="guideNum" />
+    <result column="tickOrigin" jdbcType="INTEGER" property="tickOrigin" />
+    <result column="tickType" jdbcType="VARCHAR" property="tickType" />
+    <result column="travellerType" jdbcType="VARCHAR" property="travellerType" />
+    <result column="travelType" jdbcType="VARCHAR" property="travelType" />
+    <result column="startSeatNo" jdbcType="INTEGER" property="startSeatNo" />
+    <result column="returnSeatNo" jdbcType="INTEGER" property="returnSeatNo" />
+    <result column="returnState" jdbcType="VARCHAR" property="returnState" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
+    <result column="returnStateDate" jdbcType="TIMESTAMP" property="returnStateDate" />
+    <result column="isNoticed" jdbcType="VARCHAR" property="isNoticed" />
+    <result column="orderName" jdbcType="VARCHAR" property="orderName" />
+    <result column="returnName" jdbcType="VARCHAR" property="returnName" />
+    <result column="isPrint" jdbcType="INTEGER" property="isPrint" />
+    <result column="invoiceIsPrint" jdbcType="INTEGER" property="invoiceIsPrint" />
+    <result column="newOrderNo" jdbcType="VARCHAR" property="newOrderNo" />
+    <result column="oldTickCost" jdbcType="FLOAT" property="oldTickCost" />
+    <result column="ticketUpdateFee" jdbcType="FLOAT" property="ticketUpdateFee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    tickNo, passportNo, trName, legalNo, bookPassNo, teamNo, tickDate, startDate, startVoyNo, 
+    startSeat, returnDate, returnVoyNo, returnSeat, printDate, `state`, stateDate, changeTDate, 
+    tickRefund, tickCost, payType, isGuide, guideNum, tickOrigin, tickType, travellerType, 
+    travelType, startSeatNo, returnSeatNo, returnState, orderNo, returnStateDate, isNoticed, 
+    orderName, returnName, isPrint, invoiceIsPrint, newOrderNo, oldTickCost, ticketUpdateFee
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_data_ticket
+    where tickNo = #{tickNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_data_ticket
+    where tickNo = #{tickNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fytmss.beans.ticket.TicketBean">
+    <!--@mbg.generated-->
+    insert into t_data_ticket (tickNo, passportNo, trName, 
+      legalNo, bookPassNo, teamNo, 
+      tickDate, startDate, startVoyNo, 
+      startSeat, returnDate, returnVoyNo, 
+      returnSeat, printDate, `state`, 
+      stateDate, changeTDate, tickRefund, 
+      tickCost, payType, isGuide, 
+      guideNum, tickOrigin, tickType, 
+      travellerType, travelType, startSeatNo, 
+      returnSeatNo, returnState, orderNo, 
+      returnStateDate, isNoticed, orderName, 
+      returnName, isPrint, invoiceIsPrint, 
+      newOrderNo, oldTickCost, ticketUpdateFee
+      )
+    values (#{tickNo,jdbcType=VARCHAR}, #{passportNo,jdbcType=VARCHAR}, #{trName,jdbcType=VARCHAR}, 
+      #{legalNo,jdbcType=VARCHAR}, #{bookPassNo,jdbcType=VARCHAR}, #{teamNo,jdbcType=VARCHAR}, 
+      #{tickDate,jdbcType=TIMESTAMP}, #{startDate,jdbcType=TIMESTAMP}, #{startVoyNo,jdbcType=VARCHAR}, 
+      #{startSeat,jdbcType=VARCHAR}, #{returnDate,jdbcType=TIMESTAMP}, #{returnVoyNo,jdbcType=VARCHAR}, 
+      #{returnSeat,jdbcType=VARCHAR}, #{printDate,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, 
+      #{stateDate,jdbcType=TIMESTAMP}, #{changeTDate,jdbcType=TIMESTAMP}, #{tickRefund,jdbcType=FLOAT}, 
+      #{tickCost,jdbcType=FLOAT}, #{payType,jdbcType=VARCHAR}, #{isGuide,jdbcType=VARCHAR}, 
+      #{guideNum,jdbcType=INTEGER}, #{tickOrigin,jdbcType=INTEGER}, #{tickType,jdbcType=VARCHAR}, 
+      #{travellerType,jdbcType=VARCHAR}, #{travelType,jdbcType=VARCHAR}, #{startSeatNo,jdbcType=INTEGER}, 
+      #{returnSeatNo,jdbcType=INTEGER}, #{returnState,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{returnStateDate,jdbcType=TIMESTAMP}, #{isNoticed,jdbcType=VARCHAR}, #{orderName,jdbcType=VARCHAR}, 
+      #{returnName,jdbcType=VARCHAR}, #{isPrint,jdbcType=INTEGER}, #{invoiceIsPrint,jdbcType=INTEGER},
+      #{newOrderNo,jdbcType=VARCHAR}, #{oldTickCost,jdbcType=FLOAT}, #{ticketUpdateFee,jdbcType=FLOAT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fytmss.beans.ticket.TicketBean">
+    <!--@mbg.generated-->
+    insert into t_data_ticket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tickNo != null">
+        tickNo,
+      </if>
+      <if test="passportNo != null">
+        passportNo,
+      </if>
+      <if test="trName != null">
+        trName,
+      </if>
+      <if test="legalNo != null">
+        legalNo,
+      </if>
+      <if test="bookPassNo != null">
+        bookPassNo,
+      </if>
+      <if test="teamNo != null">
+        teamNo,
+      </if>
+      <if test="tickDate != null">
+        tickDate,
+      </if>
+      <if test="startDate != null">
+        startDate,
+      </if>
+      <if test="startVoyNo != null">
+        startVoyNo,
+      </if>
+      <if test="startSeat != null">
+        startSeat,
+      </if>
+      <if test="returnDate != null">
+        returnDate,
+      </if>
+      <if test="returnVoyNo != null">
+        returnVoyNo,
+      </if>
+      <if test="returnSeat != null">
+        returnSeat,
+      </if>
+      <if test="printDate != null">
+        printDate,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="stateDate != null">
+        stateDate,
+      </if>
+      <if test="changeTDate != null">
+        changeTDate,
+      </if>
+      <if test="tickRefund != null">
+        tickRefund,
+      </if>
+      <if test="tickCost != null">
+        tickCost,
+      </if>
+      <if test="payType != null">
+        payType,
+      </if>
+      <if test="isGuide != null">
+        isGuide,
+      </if>
+      <if test="guideNum != null">
+        guideNum,
+      </if>
+      <if test="tickOrigin != null">
+        tickOrigin,
+      </if>
+      <if test="tickType != null">
+        tickType,
+      </if>
+      <if test="travellerType != null">
+        travellerType,
+      </if>
+      <if test="travelType != null">
+        travelType,
+      </if>
+      <if test="startSeatNo != null">
+        startSeatNo,
+      </if>
+      <if test="returnSeatNo != null">
+        returnSeatNo,
+      </if>
+      <if test="returnState != null">
+        returnState,
+      </if>
+      <if test="orderNo != null">
+        orderNo,
+      </if>
+      <if test="returnStateDate != null">
+        returnStateDate,
+      </if>
+      <if test="isNoticed != null">
+        isNoticed,
+      </if>
+      <if test="orderName != null">
+        orderName,
+      </if>
+      <if test="returnName != null">
+        returnName,
+      </if>
+      <if test="isPrint != null">
+        isPrint,
+      </if>
+      <if test="invoiceIsPrint != null">
+        invoiceIsPrint,
+      </if>
+      <if test="newOrderNo != null">
+        newOrderNo,
+      </if>
+      <if test="oldTickCost != null">
+        oldTickCost,
+      </if>
+      <if test="ticketUpdateFee != null">
+        ticketUpdateFee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tickNo != null">
+        #{tickNo,jdbcType=VARCHAR},
+      </if>
+      <if test="passportNo != null">
+        #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trName != null">
+        #{trName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalNo != null">
+        #{legalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPassNo != null">
+        #{bookPassNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null">
+        #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tickDate != null">
+        #{tickDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startVoyNo != null">
+        #{startVoyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startSeat != null">
+        #{startSeat,jdbcType=VARCHAR},
+      </if>
+      <if test="returnDate != null">
+        #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnVoyNo != null">
+        #{returnVoyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnSeat != null">
+        #{returnSeat,jdbcType=VARCHAR},
+      </if>
+      <if test="printDate != null">
+        #{printDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="stateDate != null">
+        #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTDate != null">
+        #{changeTDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tickRefund != null">
+        #{tickRefund,jdbcType=FLOAT},
+      </if>
+      <if test="tickCost != null">
+        #{tickCost,jdbcType=FLOAT},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="isGuide != null">
+        #{isGuide,jdbcType=VARCHAR},
+      </if>
+      <if test="guideNum != null">
+        #{guideNum,jdbcType=INTEGER},
+      </if>
+      <if test="tickOrigin != null">
+        #{tickOrigin,jdbcType=INTEGER},
+      </if>
+      <if test="tickType != null">
+        #{tickType,jdbcType=VARCHAR},
+      </if>
+      <if test="travellerType != null">
+        #{travellerType,jdbcType=VARCHAR},
+      </if>
+      <if test="travelType != null">
+        #{travelType,jdbcType=VARCHAR},
+      </if>
+      <if test="startSeatNo != null">
+        #{startSeatNo,jdbcType=INTEGER},
+      </if>
+      <if test="returnSeatNo != null">
+        #{returnSeatNo,jdbcType=INTEGER},
+      </if>
+      <if test="returnState != null">
+        #{returnState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStateDate != null">
+        #{returnStateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNoticed != null">
+        #{isNoticed,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null">
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnName != null">
+        #{returnName,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+        #{isPrint,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceIsPrint != null">
+        #{invoiceIsPrint,jdbcType=INTEGER},
+      </if>
+      <if test="newOrderNo != null">
+        #{newOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldTickCost != null">
+        #{oldTickCost,jdbcType=FLOAT},
+      </if>
+      <if test="ticketUpdateFee != null">
+        #{ticketUpdateFee,jdbcType=FLOAT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fytmss.beans.ticket.TicketBean">
+    <!--@mbg.generated-->
+    update t_data_ticket
+    <set>
+      <if test="passportNo != null">
+        passportNo = #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trName != null">
+        trName = #{trName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalNo != null">
+        legalNo = #{legalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPassNo != null">
+        bookPassNo = #{bookPassNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null">
+        teamNo = #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tickDate != null">
+        tickDate = #{tickDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null">
+        startDate = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startVoyNo != null">
+        startVoyNo = #{startVoyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startSeat != null">
+        startSeat = #{startSeat,jdbcType=VARCHAR},
+      </if>
+      <if test="returnDate != null">
+        returnDate = #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnVoyNo != null">
+        returnVoyNo = #{returnVoyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnSeat != null">
+        returnSeat = #{returnSeat,jdbcType=VARCHAR},
+      </if>
+      <if test="printDate != null">
+        printDate = #{printDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="stateDate != null">
+        stateDate = #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTDate != null">
+        changeTDate = #{changeTDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tickRefund != null">
+        tickRefund = #{tickRefund,jdbcType=FLOAT},
+      </if>
+      <if test="tickCost != null">
+        tickCost = #{tickCost,jdbcType=FLOAT},
+      </if>
+      <if test="payType != null">
+        payType = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="isGuide != null">
+        isGuide = #{isGuide,jdbcType=VARCHAR},
+      </if>
+      <if test="guideNum != null">
+        guideNum = #{guideNum,jdbcType=INTEGER},
+      </if>
+      <if test="tickOrigin != null">
+        tickOrigin = #{tickOrigin,jdbcType=INTEGER},
+      </if>
+      <if test="tickType != null">
+        tickType = #{tickType,jdbcType=VARCHAR},
+      </if>
+      <if test="travellerType != null">
+        travellerType = #{travellerType,jdbcType=VARCHAR},
+      </if>
+      <if test="travelType != null">
+        travelType = #{travelType,jdbcType=VARCHAR},
+      </if>
+      <if test="startSeatNo != null">
+        startSeatNo = #{startSeatNo,jdbcType=INTEGER},
+      </if>
+      <if test="returnSeatNo != null">
+        returnSeatNo = #{returnSeatNo,jdbcType=INTEGER},
+      </if>
+      <if test="returnState != null">
+        returnState = #{returnState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        orderNo = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStateDate != null">
+        returnStateDate = #{returnStateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNoticed != null">
+        isNoticed = #{isNoticed,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null">
+        orderName = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnName != null">
+        returnName = #{returnName,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+        isPrint = #{isPrint,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceIsPrint != null">
+        invoiceIsPrint = #{invoiceIsPrint,jdbcType=INTEGER},
+      </if>
+      <if test="newOrderNo != null">
+        newOrderNo = #{newOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldTickCost != null">
+        oldTickCost = #{oldTickCost,jdbcType=FLOAT},
+      </if>
+      <if test="ticketUpdateFee != null">
+        ticketUpdateFee = #{ticketUpdateFee,jdbcType=FLOAT},
+      </if>
+    </set>
+    where tickNo = #{tickNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.ticket.TicketBean">
+    <!--@mbg.generated-->
+    update t_data_ticket
+    set passportNo = #{passportNo,jdbcType=VARCHAR},
+      trName = #{trName,jdbcType=VARCHAR},
+      legalNo = #{legalNo,jdbcType=VARCHAR},
+      bookPassNo = #{bookPassNo,jdbcType=VARCHAR},
+      teamNo = #{teamNo,jdbcType=VARCHAR},
+      tickDate = #{tickDate,jdbcType=TIMESTAMP},
+      startDate = #{startDate,jdbcType=TIMESTAMP},
+      startVoyNo = #{startVoyNo,jdbcType=VARCHAR},
+      startSeat = #{startSeat,jdbcType=VARCHAR},
+      returnDate = #{returnDate,jdbcType=TIMESTAMP},
+      returnVoyNo = #{returnVoyNo,jdbcType=VARCHAR},
+      returnSeat = #{returnSeat,jdbcType=VARCHAR},
+      printDate = #{printDate,jdbcType=TIMESTAMP},
+      `state` = #{state,jdbcType=VARCHAR},
+      stateDate = #{stateDate,jdbcType=TIMESTAMP},
+      changeTDate = #{changeTDate,jdbcType=TIMESTAMP},
+      tickRefund = #{tickRefund,jdbcType=FLOAT},
+      tickCost = #{tickCost,jdbcType=FLOAT},
+      payType = #{payType,jdbcType=VARCHAR},
+      isGuide = #{isGuide,jdbcType=VARCHAR},
+      guideNum = #{guideNum,jdbcType=INTEGER},
+      tickOrigin = #{tickOrigin,jdbcType=INTEGER},
+      tickType = #{tickType,jdbcType=VARCHAR},
+      travellerType = #{travellerType,jdbcType=VARCHAR},
+      travelType = #{travelType,jdbcType=VARCHAR},
+      startSeatNo = #{startSeatNo,jdbcType=INTEGER},
+      returnSeatNo = #{returnSeatNo,jdbcType=INTEGER},
+      returnState = #{returnState,jdbcType=VARCHAR},
+      orderNo = #{orderNo,jdbcType=VARCHAR},
+      returnStateDate = #{returnStateDate,jdbcType=TIMESTAMP},
+      isNoticed = #{isNoticed,jdbcType=VARCHAR},
+      orderName = #{orderName,jdbcType=VARCHAR},
+      returnName = #{returnName,jdbcType=VARCHAR},
+      isPrint = #{isPrint,jdbcType=INTEGER},
+      invoiceIsPrint = #{invoiceIsPrint,jdbcType=INTEGER},
+      newOrderNo = #{newOrderNo,jdbcType=VARCHAR},
+      oldTickCost = #{oldTickCost,jdbcType=FLOAT},
+      ticketUpdateFee = #{ticketUpdateFee,jdbcType=FLOAT}
+    where tickNo = #{tickNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryTouristTicketsInfo" resultType="com.fytmss.beans.ticket.TicketBean">
+    select
+    tickNo, passportNo, trName, startVoyNo, startDate, travellerType, travelType, tickType, startSeat, startSeatNo, state, tickCost, tickRefund, shipName
+    from t_data_ticket t
+    inner join t_data_voyage v
+    on (CONCAT(date_format(v.voyDate, '%Y-%c-%d'), ' ', date_format(v.startTime, '%H:%i:%s')) = t.startDate and v.voyNo = t.startVoyNo)
+    inner join t_base_ship s
+    ON v.shipNo = s.shipNo
+    <where>
+      returnVoyNo IS NULL
+      <if test="param1 != null and param1 != ''">
+        and travelType = #{param1,jdbcType=VARCHAR}
+      </if>
+      and startDate between #{param2,jdbcType=TIMESTAMP} and #{param3,jdbcType=TIMESTAMP}
+      <if test="param4 != null and param4 != ''">
+        and (passportNo like concat('%', #{param4,jdbcType=VARCHAR}, '%')
+        or trName like concat('%', #{param4,jdbcType=VARCHAR}, '%'))
+      </if>
+    </where>
+  </select>
+
+  <insert id="insertTouristTicketsByBatch" parameterType="java.util.List">
+    insert into
+    t_data_ticket(tickNo, passportNo, trName,
+                  legalNo, bookPassNo, teamNo,
+                  tickDate, startDate, startVoyNo,
+                  startSeat, returnDate, returnVoyNo,
+                  returnSeat, printDate, state,
+                  stateDate, changeTDate, tickRefund,
+                  tickCost, payType, isGuide,
+                  guideNum, tickOrigin, tickType,
+                  travellerType, travelType, startSeatNo,
+                  returnSeatNo, returnState, orderNo,
+                  returnStateDate, isNoticed, orderName,
+                  returnName, isPrint, invoiceIsPrint,
+                  newOrderNo, oldTickCost, ticketUpdateFee)
+    values
+    <foreach collection="list" item="ticket" separator=",">
+      (
+      #{ticket.tickNo,jdbcType=VARCHAR}, #{ticket.passportNo,jdbcType=VARCHAR}, #{ticket.trName,jdbcType=VARCHAR},
+      #{ticket.legalNo,jdbcType=VARCHAR}, #{ticket.bookPassNo,jdbcType=VARCHAR}, #{ticket.teamNo,jdbcType=VARCHAR},
+      #{ticket.tickDate,jdbcType=TIMESTAMP}, #{ticket.startDate,jdbcType=TIMESTAMP}, #{ticket.startVoyNo,jdbcType=VARCHAR},
+      #{ticket.startSeat,jdbcType=VARCHAR}, #{ticket.returnDate,jdbcType=TIMESTAMP}, #{ticket.returnVoyNo,jdbcType=VARCHAR},
+      #{ticket.returnSeat,jdbcType=VARCHAR}, #{ticket.printDate,jdbcType=TIMESTAMP}, #{ticket.state,jdbcType=VARCHAR},
+      #{ticket.stateDate,jdbcType=TIMESTAMP}, #{ticket.changeTDate,jdbcType=TIMESTAMP}, #{ticket.tickRefund,jdbcType=FLOAT},
+      #{ticket.tickCost,jdbcType=FLOAT}, #{ticket.payType,jdbcType=VARCHAR}, #{ticket.isGuide,jdbcType=VARCHAR},
+      #{ticket.guideNum,jdbcType=INTEGER}, #{ticket.tickOrigin,jdbcType=INTEGER}, #{ticket.tickType,jdbcType=VARCHAR},
+      #{ticket.travellerType,jdbcType=VARCHAR}, #{ticket.travelType,jdbcType=VARCHAR}, #{ticket.startSeatNo,jdbcType=INTEGER},
+      #{ticket.returnSeatNo,jdbcType=INTEGER}, #{ticket.returnState,jdbcType=VARCHAR}, #{ticket.orderNo,jdbcType=VARCHAR},
+      #{ticket.returnStateDate,jdbcType=TIMESTAMP}, #{ticket.isNoticed,jdbcType=VARCHAR}, #{ticket.orderName,jdbcType=VARCHAR},
+      #{ticket.returnName,jdbcType=VARCHAR}, #{ticket.isPrint,jdbcType=INTEGER}, #{ticket.invoiceIsPrint,jdbcType=INTEGER},
+      #{ticket.newOrderNo,jdbcType=VARCHAR}, #{ticket.oldTickCost,jdbcType=FLOAT}, #{ticket.ticketUpdateFee,jdbcType=FLOAT}
+      )
+    </foreach>
+  </insert>
+
+  <select id="queryTicket" resultType="java.lang.Integer">
+    select count(*)
+    from t_data_ticket
+    where passportNo = #{param1,jdbcType=VARCHAR} and (startDate = #{param2,jdbcType=VARCHAR} or returnDate = #{param2,jdbcType=VARCHAR}) and (state = '未检票' or state = '改签')
+  </select>
+
+  <select id="queryCTeamByExit" resultType="com.fytmss.beans.form.TeamForm">
+    select
+    teamNo, MAX(l.travelName) AS travelName, count(*) as travellerNum
+    from t_data_ticket t
+    inner join t_base_travel l
+    on t.legalNo = l.legalNo
+    where
+    returnVoyNo IS NOT NULL
+    and travelType = '中团出境'
+    and (state = '未检票' or state = '改签')
+    and startDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}
+    group by teamNo
+  </select>
+
+  <select id="queryCTeamByEntry" resultType="com.fytmss.beans.form.TeamForm">
+    select
+    teamNo, MAX(l.travelName) AS travelName, count(*) as travellerNum
+    from t_data_ticket t
+    inner join t_base_travel l
+    on t.legalNo = l.legalNo
+    where
+    returnVoyNo IS NOT NULL
+    and travelType = '中团出境'
+    and (state = '未检票' or state = '改签')
+    and returnDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}
+    group by teamNo
+  </select>
+
+  <select id="queryCTeam" resultType="com.fytmss.beans.form.TeamForm">
+    select
+    teamNo, MAX(l.travelName) AS travelName, count(*) as travellerNum
+    from t_data_ticket t
+    inner join t_base_travel l
+    on t.legalNo = l.legalNo
+    where
+    returnVoyNo IS NOT NULL
+    and travelType = '中团出境'
+    and (state = '未检票' or state = '改签')
+    and ((startDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}) or
+    (returnDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}))
+    group by teamNo
+  </select>
+
+  <select id="queryETeamByExit" resultType="com.fytmss.beans.form.TeamForm">
+    select
+    teamNo, MAX(l.travelName) AS travelName, count(*) as travellerNum
+    from t_data_ticket t
+    inner join t_base_travel l
+    on t.legalNo = l.legalNo
+    where
+    returnVoyNo IS NOT NULL
+    and travelType = '俄团入境'
+    and (state = '未检票' or state = '改签')
+    and startDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}
+    group by teamNo
+  </select>
+
+  <select id="queryETeamByEntry" resultType="com.fytmss.beans.form.TeamForm">
+    select
+    teamNo, MAX(l.travelName) AS travelName, count(*) as travellerNum
+    from t_data_ticket t
+    inner join t_base_travel l
+    on t.legalNo = l.legalNo
+    where
+    returnVoyNo IS NOT NULL
+    and travelType = '俄团入境'
+    and (state = '未检票' or state = '改签')
+    and returnDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}
+    group by teamNo
+  </select>
+
+  <select id="queryETeam" resultType="com.fytmss.beans.form.TeamForm">
+    select
+    teamNo, MAX(l.travelName) AS travelName, count(*) as travellerNum
+    from t_data_ticket t
+    inner join t_base_travel l
+    on t.legalNo = l.legalNo
+    where
+    returnVoyNo IS NOT NULL
+    and travelType = '俄团入境'
+    and (state = '未检票' or state = '改签')
+    and ((startDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}) or
+    (returnDate between #{param1,jdbcType=TIMESTAMP} and #{param2,jdbcType=TIMESTAMP}))
+    group by teamNo
+  </select>
+
+  <select id="selectByTeamNo" resultType="com.fytmss.beans.ticket.TicketBean">
+    select teamNo, trName, passportNo, tickNo, startVoyNo, startDate, startSeat, startSeatNo, returnVoyNo, returnDate, returnSeat, returnSeatNo,
+    travelType, tickType, state, returnState, tickCost
+    from t_data_ticket t
+    where teamNo = #{teamNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByStartDate" resultType="com.fytmss.beans.ticket.TicketBean">
+    select teamNo, trName, passportNo, tickNo, startVoyNo, startDate, startSeat, returnVoyNo, returnDate, returnSeat,
+           travelType, tickType, state, tickCost, legalNo, tickDate
+    from t_data_ticket
+    <where>
+           startDate like concat(#{param1,jdbcType=VARCHAR}, '%')
+           <if test="param2 != null and param2 != ''">
+             and state = #{param2,jdbcType=VARCHAR}
+           </if>
+           <if test="param3 != null and param3 != ''">
+             and startSeat = #{param3,jdbcType=VARCHAR}
+           </if>
+           <if test="param4 != null and param4 != ''">
+             and returnSeat = #{param4,jdbcType=VARCHAR}
+           </if>
+    </where>
+  </select>
+
+  <select id="selectByTickDate" resultType="com.fytmss.beans.ticket.TicketBean">
+    select teamNo, trName, passportNo, tickNo, startVoyNo, startDate, startSeat, returnVoyNo, returnDate, returnSeat,
+    travelType, tickType, state, tickCost, legalNo, tickDate
+    from t_data_ticket
+    <where>
+      tickDate like concat(#{param1,jdbcType=VARCHAR}, '%')
+      <if test="param2 != null and param2 != ''">
+        and state = #{param2,jdbcType=VARCHAR}
+      </if>
+      <if test="param3 != null and param3 != ''">
+        and startSeat = #{param3,jdbcType=VARCHAR}
+      </if>
+      <if test="param4 != null and param4 != ''">
+        and returnSeat = #{param4,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>
