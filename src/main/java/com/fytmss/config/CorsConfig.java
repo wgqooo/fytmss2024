@@ -12,6 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CorsConfig implements WebMvcConfigurer {
 
     /**
+     *
+     * 有的项目按照如上配置允许跨域请求成功了，但有些项目却不生效？
+     * 其实就是一个结论：有中断响应的过滤器在 CorsFilter 之前执行了，
+     * 也就无法执行到 CorsFilter，自然 CorsConfiguration 中的配置形同虚设
      * allowedOriginPatterns 和 allowedOrigins都是配置跨域请求来源的
      * 前者支持通配符,后者不支持通配符,只能字符串,取其一种即可
      * @param registry

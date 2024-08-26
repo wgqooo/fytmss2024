@@ -28,4 +28,5 @@ public interface UserBeanMapper {
 
     int updateByPrimaryKey(UserBean record);
 
+    int resetPwd(String empNo, String newPassword);
 }

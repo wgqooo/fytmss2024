@@ -123,4 +123,12 @@
       icon = #{icon,jdbcType=VARCHAR}
     where menuId = #{menuId,jdbcType=INTEGER}
   </update>
+
+  <select id="queryMenuByPath" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List">
+    </include>
+    from t_sys_menu
+    where path = #{path,jdbcType=VARCHAR}
+  </select>
 </mapper>

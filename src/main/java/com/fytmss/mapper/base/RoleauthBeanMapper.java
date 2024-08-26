@@ -30,4 +30,8 @@ public interface RoleauthBeanMapper {
     int updateByPrimaryKeySelective(RoleauthBean record);
 
     int updateByPrimaryKey(RoleauthBean record);
+
+    List<String> queryRoleCNameByMenuId(Integer menuId);
+
+    int deleteAuth(int roleId, int menuId);
 }

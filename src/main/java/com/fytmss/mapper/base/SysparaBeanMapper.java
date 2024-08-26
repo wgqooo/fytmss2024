@@ -22,4 +22,6 @@ public interface SysparaBeanMapper {
     int update(SysparaBean sysparaBean);
 
     int delete(@Param("dType") String dType, @Param("dCode") Integer dCode);
+
+    List<String> queryAllTypes();
 }

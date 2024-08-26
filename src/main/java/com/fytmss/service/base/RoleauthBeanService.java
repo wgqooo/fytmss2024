@@ -52,4 +52,11 @@ public class RoleauthBeanService{
         return roleauthBeanMapper.updateByPrimaryKey(record);
     }
 
+    public List<String> getRoleCNameByMenuId(Integer menuId) {
+        return roleauthBeanMapper.queryRoleCNameByMenuId(menuId);
+    }
+
+    public int deleteAuth(int roleId, int menuId) {
+        return roleauthBeanMapper.deleteAuth(roleId, menuId);
+    }
 }

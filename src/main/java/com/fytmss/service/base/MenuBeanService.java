@@ -44,4 +44,7 @@ public class MenuBeanService{
         return menuBeanMapper.updateByPrimaryKey(record);
     }
 
+    public MenuBean selectMenuByPath(String path) {
+        return menuBeanMapper.queryMenuByPath(path);
+    }
 }

@@ -338,7 +338,7 @@
   </select>
 
   <select id="getVoyByParams" resultType="com.fytmss.beans.voyage.VoyageBean">
-    select voyNo, s.shipNo, shipName, voyDate, startTime, startPort, vipSeat, firSeat, secSeat
+    select voyNo, s.shipNo, shipName, voyDate, startTime, startPort, vipSeat, firSeat, secSeat, vipRes, firRes, secRes
     from t_data_voyage v
     inner join t_base_ship s
     on v.reShipNo = s.shipNo

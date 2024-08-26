@@ -24,5 +24,9 @@ public interface RoleBeanMapper {
 
     int updateByPrimaryKeySelective(RoleBean record);
 
-    int updateByPrimaryKey(RoleBean record);
+    int updateRole(RoleBean record);
+
+    RoleBean selectByRoleId(Integer roleId);
+
+    int getTotal();
 }

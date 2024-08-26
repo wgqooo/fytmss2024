@@ -80,4 +80,9 @@
       dType, dCode, cPara, dValue, dTime
     from t_dic_syspara
   </select>
+
+  <select id="queryAllTypes" resultType="java.lang.String">
+    select distinct dType
+    from t_dic_syspara
+  </select>
 </mapper>

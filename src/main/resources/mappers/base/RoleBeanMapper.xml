@@ -70,7 +70,7 @@
     </set>
     where roleId = #{roleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fytmss.beans.base.RoleBean">
+  <update id="updateRole" parameterType="com.fytmss.beans.base.RoleBean">
     <!--@mbg.generated-->
     update t_sys_role
     set roleEname = #{roleEname,jdbcType=VARCHAR},
@@ -81,6 +81,18 @@
   <select id="queryAllRoles" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
+    from t_sys_role
+  </select>
+
+  <select id="selectByRoleId" resultType="com.fytmss.beans.base.RoleBean">
+    select
+    <include refid="Base_Column_List"/>
+    from t_sys_role
+    where roleId = #{roleId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getTotal" resultType="java.lang.Integer">
+    select count(*)
     from t_sys_role
   </select>
 </mapper>

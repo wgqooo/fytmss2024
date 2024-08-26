@@ -1,0 +1,70 @@
+//package com.fytmss.config;
+//
+//import jakarta.servlet.ServletContext;
+//import jakarta.servlet.ServletContextEvent;
+//import jakarta.servlet.ServletContextListener;
+//import jakarta.servlet.annotation.WebListener;
+//import jakarta.servlet.http.HttpSession;
+//import jakarta.servlet.http.HttpSessionEvent;
+//import jakarta.servlet.http.HttpSessionListener;
+//import org.springframework.stereotype.Component;
+//
+//import java.util.HashSet;
+//import java.util.Set;
+//
+///**
+// * @author wgq
+// * @create 2024/8/13-周二 1:51
+// */
+//@WebListener
+//@Component
+//public class UserStatisticsListener implements HttpSessionListener, ServletContextListener {
+//
+//    private ServletContext application = null;
+//    public static HttpSession httpSession = null;
+//
+//    @Override
+//    public void contextDestroyed(ServletContextEvent s) {
+//        System.out.println("context Destroyed");
+//    }
+//
+//    @Override
+//    public void contextInitialized(ServletContextEvent sce) {
+//        application = sce.getServletContext();
+//        Set<String> onlineUserSet = new HashSet<>();
+//        application.setAttribute("onlineUserSet", onlineUserSet);
+//        System.out.println("onlineUserSet2==>"+onlineUserSet);
+//    }
+//
+//    /**
+//     * 创建session
+//     * @param se
+//     */
+//    @Override
+//    public void sessionCreated(HttpSessionEvent se) {
+//        httpSession = se.getSession();
+//        System.out.println("sessionId==>"+se.getSession().getId());
+//    }
+//
+//    /**
+//     * 销毁session
+//     * @param se
+//     */
+//    @Override
+//    public void sessionDestroyed(HttpSessionEvent se) {
+//        System.out.println("销毁session");
+//        HttpSession session = se.getSession();
+//        Set<String> onlineUserSet = (Set<String>)application.getAttribute("onlineUserSet");
+//        String empNo = (String)session.getAttribute("empNo");
+//        onlineUserSet.remove(empNo);
+//        application.setAttribute("onlineUserSet", onlineUserSet);
+//        onlineUserSet = (Set<String>)application.getAttribute("onlineUserSet");
+//        System.out.println("当前在线用户:" + onlineUserSet.toString());
+//        System.out.println(empNo + "-->退出");
+//        //推送所有在线用户现有的在线用户id
+//        if(!onlineUserSet.isEmpty()){
+//            WebSocketConfiguration.sendInfo(onlineUserSet.toString(),onlineUserSet);
+//        }
+//    }
+//}
+//

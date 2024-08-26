@@ -1,5 +1,6 @@
 package com.fytmss.controller.voyage;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fytmss.beans.form.VoyDateNoForm;
 import com.fytmss.beans.form.VoyagesForm;
 import com.fytmss.beans.voyage.VoyageBean;
@@ -8,8 +9,11 @@ import com.fytmss.common.utils.R;
 import com.fytmss.service.voyage.VoyageBeanService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -23,13 +27,20 @@ public class VoyageManageController {
     @Resource
     private VoyageBeanService voyageBeanService;
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private ObjectMapper objectMapper;
+
+
+
     @GetMapping("/list")
     public R list(@RequestParam HashMap<String, String> params){
         int index = Integer.parseInt(params.get("index"));
         int size = Integer.parseInt(params.get("size"));
         String startDate = params.get("startDate");
         String endDate = params.get("endDate");
-        System.out.println("startDate = " + startDate + ", endDate" + endDate);
         //List<String> datesInRange = DateUtils.getDatesInRange(startDate, endDate);
         PageInfo<VoyageBean> voyages = voyageBeanService.findAllVoyagesByPageS(index, size, startDate, endDate);
         R r = new R();
@@ -39,19 +50,34 @@ public class VoyageManageController {
 
     @GetMapping("/allBetweenDate")
     public R list(Integer startPort, String startDate, String endDate){
+        //todo 这里貌似可以优化，从redis里面读取每条航次的剩余作为数量可以更快
         List<VoyageBean> voyages = voyageBeanService.findAllVoyagesBetweenDate(startPort, startDate, endDate);
         R r = new R();
         r.put("voyages", voyages);
         return r;
     }
 
+
     @PostMapping("/save")
     public R save(@RequestBody VoyageBean voyageBean){
         try{
             if(Objects.equals(voyageBean.getReShipNo(), "")) voyageBean.setReShipNo(voyageBean.getShipNo());
             voyageBeanService.insert(voyageBean);
+            // 构建 Redis 键
+            String voyKey = "voyage:" + voyageBean.getVoyDate() + ":" + voyageBean.getVoyNo();
+            //查询该航次的船型（座位数量分布）
+            VoyageBean voyDetail = voyageBeanService.selectByParams(voyageBean.getVoyNo(), voyageBean.getVoyDate(), voyageBean.getStartTime());
+            // 使用来 stringRedisTemplate.opsForHash()存储座位数据
+            stringRedisTemplate.opsForHash().put(voyKey, "vipLeft", String.valueOf(voyDetail.getVipSeat() - voyDetail.getVipRes()));
+            stringRedisTemplate.opsForHash().put(voyKey, "firLeft", String.valueOf(voyDetail.getFirSeat() - voyDetail.getFirRes()));
+            stringRedisTemplate.opsForHash().put(voyKey, "secLeft", String.valueOf(voyDetail.getSecSeat() - voyDetail.getSecRes()));
+            //设置买票的截止时间（也就是redis中该voy的存活时间）
+            String dateTimeStr = voyDetail.getVoyDate() + " " + voyDetail.getStartTime();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date expireDate = dateFormat.parse(dateTimeStr);
+            stringRedisTemplate.expireAt(voyKey, expireDate);
         }catch (Exception e){
-            return R.error("添加失败，出发时间和航号已存在");
+            return R.error("添加航次失败，请联系管理员");
         }
         return R.ok("添加成功");
     }

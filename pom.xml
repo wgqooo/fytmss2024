@@ -39,9 +39,31 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>3.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>4.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.42</version>
         </dependency>
 
         <!-- 引入适配jakarta的依赖包 -->
@@ -86,11 +108,11 @@
             <version>2.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>2.10.9.2</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.sf.ehcache</groupId>-->
+<!--            <artifactId>ehcache</artifactId>-->
+<!--            <version>2.10.9.2</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-ehcache</artifactId>
@@ -140,6 +162,13 @@
             <artifactId>joda-time</artifactId>
             <version>2.12.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
     </dependencies>
 
 

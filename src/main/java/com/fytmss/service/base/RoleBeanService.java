@@ -23,8 +23,8 @@ public class RoleBeanService{
         return roleBeanMapper.queryAllRoles();
     }
     
-    public int deleteByPrimaryKey(Integer roleid) {
-        return roleBeanMapper.deleteByPrimaryKey(roleid);
+    public int deleteByPrimaryKey(Integer roleId) {
+        return roleBeanMapper.deleteByPrimaryKey(roleId);
     }
 
     
@@ -48,8 +48,15 @@ public class RoleBeanService{
     }
 
     
-    public int updateByPrimaryKey(RoleBean record) {
-        return roleBeanMapper.updateByPrimaryKey(record);
+    public int updateRole(RoleBean record) {
+        return roleBeanMapper.updateRole(record);
     }
 
+    public RoleBean selectRoleByRoleId(Integer roleId) {
+        return roleBeanMapper.selectByRoleId(roleId);
+    }
+
+    public int getTotal() {
+        return roleBeanMapper.getTotal();
+    }
 }

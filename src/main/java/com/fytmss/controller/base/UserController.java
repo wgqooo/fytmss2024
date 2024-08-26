@@ -1,10 +1,14 @@
 package com.fytmss.controller.base;
 
+import com.fytmss.beans.base.OnlineUser;
+import com.fytmss.beans.base.RoleBean;
 import com.fytmss.beans.base.UserBean;
 import com.fytmss.beans.base.UserRoleBean;
+import com.fytmss.beans.form.LoginForm;
 import com.fytmss.common.constant.RoleNameMap;
-import com.fytmss.common.utils.DateUtils;
 import com.fytmss.common.utils.R;
+import com.fytmss.service.base.OnlineUserService;
+import com.fytmss.service.base.RoleBeanService;
 import com.fytmss.service.base.UserBeanService;
 import com.fytmss.service.base.UserRoleBeanService;
 import com.github.pagehelper.PageInfo;
@@ -12,9 +16,8 @@ import jakarta.annotation.Resource;
 import org.apache.http.HttpStatus;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.format.DateTimeParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -32,6 +35,20 @@ public class UserController {
 
     @Resource
     private UserRoleBeanService userRoleBeanService;
+
+    @Resource
+    private RoleBeanService roleBeanService;
+
+    @Resource
+    private OnlineUserService onlineUserService;
+
+    @GetMapping("online")
+    public R online(){
+        List<OnlineUser> onlineUserList = onlineUserService.getAllOnlineUserList();
+        R r = new R();
+        r.put("onlineUserList", onlineUserList);
+        return r;
+    }
 
 
     /*
@@ -116,11 +133,27 @@ public class UserController {
 
     //todo
     @PutMapping("/password")
-    public R password(@RequestParam HashMap<String, String> params){
-        String username = params.get("username");
-        String oldPassword = params.get("oldPassword");
-        String newPassword = params.get("newPassword");
-        userService.resetPassword(username, oldPassword, newPassword);
+    public R password(@RequestBody LoginForm loginForm){
+        UserBean userBean = userService.selectByPrimaryKey(loginForm.getUsername());
+        String salt = userBean.getEmpSalt();
+        Sha256Hash hash = new Sha256Hash(loginForm.getPassword(),
+                salt, 3);
+        //userBean.setEmpPassword(hash.toHex());
+        try{
+            userService.resetPassword(loginForm.getUsername(), hash.toHex());
+        }catch (Exception e){
+            return R.error("修改失败，请联系管理员");
+        }
         return R.ok();
     }
+
+    @GetMapping("/role")
+    public R role(String empNo){
+        UserRoleBean userRoleBean = userRoleBeanService.getUserRoleBean(empNo);
+        RoleBean roleBean = roleBeanService.selectRoleByRoleId(userRoleBean.getRoleId());
+        R r = new R();
+        r.put("role", roleBean.getRoleCname());
+        return r;
+    }
+
 }

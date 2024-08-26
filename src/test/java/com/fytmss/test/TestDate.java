@@ -1,14 +1,15 @@
 package com.fytmss.test;
 
 import com.fytmss.common.utils.DateUtils;
+import com.fytmss.common.utils.IpUtils;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.jupiter.api.Test;
 
 import org.joda.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author wgq
@@ -17,7 +18,43 @@ import java.util.List;
 public class TestDate {
 
     @Test
+    public void testIP(){
+        //String ip = "192.168.31.38";
+      // String ip = "220.248.12.158"; // IpRegion:上海
+        String ip = "47.52.236.180"; // IpRegion:香港
+//        String ip = "172.22.12.123"; // IpRegion:内网IP
+//        String ip = "164.114.53.60"; // IpRegion:美国
+        String ipRegion = IpUtils.getIpRegion(ip);
+        System.out.println(ipRegion);
+    }
+
+    @Test
+    public void testAtomicInteger(){
+        AtomicInteger sessionCount = new AtomicInteger(0);
+        System.out.println(sessionCount.incrementAndGet());//1
+        System.out.println(sessionCount.getAndIncrement());//1
+        System.out.println(sessionCount.get());//2
+    }
+
+    @Test
+    public void testDeque(){
+        Deque deque = new ArrayDeque() ;
+        deque.push(1);
+        deque.push(2);
+        System.out.println(deque.removeFirst());
+    }
+
+    @Test
+    public void testDate4(){
+        System.out.println(new Date());
+        Date date = DateUtils.stringToDate("2024-08-10 01:05:00", DateUtils.DATE_TIME_PATTERN);
+        assert date != null;
+        System.out.println(date.getTime());
+    }
+
+    @Test
     public void testDate3(){
+        System.out.println(new Date());
         System.out.println(DateUtils.nextDay("2021-02-28"));
         String dateTime = "2024-07-04 09:00:00";
         String[] date_time = dateTime.split(" ");

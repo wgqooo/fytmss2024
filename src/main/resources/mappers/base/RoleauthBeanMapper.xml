@@ -24,6 +24,12 @@
     delete from t_sys_roleauth
     where roleMenuId = #{roleMenuId,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteAuth">
+    delete from t_sys_roleauth
+    where roleId = #{param1,jdbcType=INTEGER} and menuId = #{param2,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" keyColumn="roleMenuId" keyProperty="roleMenuId" parameterType="com.fytmss.beans.base.RoleauthBean" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_sys_roleauth (roleId, menuId)
@@ -74,5 +80,13 @@
     select menuId
     from t_sys_roleauth
     where roleId = #{roleId,jdbcType=INTEGER}
-    </select>
+  </select>
+
+  <select id="queryRoleCNameByMenuId" resultType="java.lang.String">
+    select roleCname
+    from t_sys_roleauth
+    inner join t_sys_role
+    on t_sys_roleauth.roleId = t_sys_role.roleId
+    where menuId = #{menuId,jdbcType=INTEGER}
+  </select>
 </mapper>

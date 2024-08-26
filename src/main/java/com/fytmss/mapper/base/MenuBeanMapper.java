@@ -20,4 +20,6 @@ public interface MenuBeanMapper {
     int updateByPrimaryKeySelective(MenuBean record);
 
     int updateByPrimaryKey(MenuBean record);
+
+    MenuBean queryMenuByPath(String path);
 }

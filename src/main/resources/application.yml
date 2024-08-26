@@ -27,6 +27,26 @@ spring:
             test-on-borrow: false
             # ????????validationQuery????????,???????,???true
             test-on-return: false
+    rabbitmq:
+        host: 192.168.88.100
+        port: 5672
+        username: wgq
+        password: 1001
+        virtual-host: hadoop
+    data:
+        redis:
+            host: 192.168.88.100
+            port: 6379
+            database: 0
+            password: 1001
+            lettuce:
+              pool:
+                  max-active: 8
+                  max-wait: -1ms
+                  max-idle: 8
+                  min-idle: 0
+
+
 
 mybatis:
     mapper-locations: classpath:mappers/**/*Mapper.xml

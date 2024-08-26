@@ -74,7 +74,7 @@ public class UserBeanService {
     }
 
     //修改密码
-    public void resetPassword(String username, String oldPassword, String newPassword) {
-
+    public int resetPassword(String empNo, String newPassword) {
+        return userMapper.resetPwd(empNo, newPassword);
     }
 }

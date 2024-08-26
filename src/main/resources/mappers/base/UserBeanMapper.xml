@@ -190,4 +190,11 @@
       enabled = #{param1,jdbcType=INTEGER}
     where empNo = #{param2,jdbcType=VARCHAR}
   </update>
+
+  <update id="resetPwd">
+    update t_base_user
+    set
+      empPassword = #{param2,jdbcType=VARCHAR}
+    where empNo = #{param1,jdbcType=VARCHAR}
+  </update>
 </mapper>
